@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BudgetSphere — Personal Finance Dashboard</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ================= LOADING SCREEN ================= -->
+<div id="loading-screen">
+  <lottie-player data-anim="loading" background="transparent" speed="1" style="width:180px;height:180px" loop autoplay></lottie-player>
+  <h1 class="loading-title"><i class="fa-solid fa-globe"></i> BudgetSphere</h1>
+  <p class="loading-subtitle">Loading your financial universe…</p>
+</div>
+
+<!-- ================= APP SHELL ================= -->
+<div id="app" class="app hidden">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="brand-icon"><i class="fa-solid fa-globe"></i></span>
+      <span class="brand-name">Budget<b>Sphere</b></span>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item active" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></button>
+      <button class="nav-item" data-page="income"><i class="fa-solid fa-money-bill-trend-up"></i><span>Income</span></button>
+      <button class="nav-item" data-page="expenses"><i class="fa-solid fa-receipt"></i><span>Expenses</span></button>
+      <button class="nav-item" data-page="bills"><i class="fa-solid fa-file-invoice-dollar"></i><span>Bill Planner</span></button>
+      <button class="nav-item" data-page="analytics"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></button>
+      <button class="nav-item" data-page="settings"><i class="fa-solid fa-sliders"></i><span>Settings</span></button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="theme-toggle" class="theme-toggle" title="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+        <span>Dark Mode</span>
+      </button>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Main -->
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="hamburger" title="Menu"><i class="fa-solid fa-bars"></i></button>
+      <h2 class="page-title" id="page-title">Dashboard</h2>
+
+      <div class="topbar-actions">
+        <div class="global-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="global-search" placeholder="Search transactions, bills…" />
+        </div>
+
+        <div class="notif-wrap">
+          <button class="icon-btn" id="notif-bell" title="Notifications">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notif-badge hidden" id="notif-badge">0</span>
+          </button>
+          <div class="notif-panel hidden" id="notif-panel">
+            <div class="notif-panel-head">
+              <h3>Notification Center</h3>
+              <div class="notif-panel-actions">
+                <button id="notif-mark-read" title="Mark all read"><i class="fa-solid fa-check-double"></i></button>
+                <button id="notif-clear" title="Clear all"><i class="fa-solid fa-trash"></i></button>
+              </div>
+            </div>
+            <div class="notif-list" id="notif-list"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="page-dashboard">
+        <div class="cards-grid">
+          <div class="glass-card stat-card stat-income">
+            <div class="stat-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Total Income</span>
+              <span class="stat-value" id="card-income" data-count="0">$0.00</span>
+            </div>
+          </div>
+          <div class="glass-card stat-card stat-expense">
+            <div class="stat-icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Total Expenses</span>
+              <span class="stat-value" id="card-expense" data-count="0">$0.00</span>
+            </div>
+          </div>
+          <div class="glass-card stat-card stat-balance">
+            <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Balance</span>
+              <span class="stat-value" id="card-balance" data-count="0">$0.00</span>
+            </div>
+          </div>
+          <div class="glass-card stat-card stat-pending">
+            <div class="stat-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Pending Bills</span>
+              <span class="stat-value" id="card-pending" data-count="0">0</span>
+            </div>
+          </div>
+          <div class="glass-card stat-card stat-paid">
+            <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Paid Bills</span>
+              <span class="stat-value" id="card-paid" data-count="0">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <div class="glass-card chart-card">
+            <h3>Monthly Income vs Expenses</h3>
+            <div class="chart-wrap"><canvas id="chart-monthly"></canvas></div>
+          </div>
+          <div class="glass-card chart-card">
+            <h3>Expense Breakdown</h3>
+            <div class="chart-wrap"><canvas id="chart-breakdown"></canvas></div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <div class="glass-card list-card">
+            <div class="list-card-head">
+              <h3>Recent Transactions</h3>
+              <button class="link-btn" data-goto="income">View all</button>
+            </div>
+            <div id="recent-transactions" class="mini-list"></div>
+          </div>
+          <div class="glass-card list-card">
+            <div class="list-card-head">
+              <h3>Upcoming Bills</h3>
+              <button class="link-btn" data-goto="bills">View all</button>
+            </div>
+            <div id="upcoming-bills" class="mini-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INCOME -->
+      <section class="page" id="page-income">
+        <div class="toolbar glass-card">
+          <button class="btn btn-primary" id="add-income-btn"><i class="fa-solid fa-plus"></i> Add Income</button>
+          <div class="toolbar-filters">
+            <div class="search-input">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="income-search" placeholder="Search income…" />
+            </div>
+            <select id="income-category-filter">
+              <option value="">All Categories</option>
+            </select>
+            <select id="income-sort">
+              <option value="date-desc">Newest First</option>
+              <option value="date-asc">Oldest First</option>
+              <option value="amount-desc">Amount: High to Low</option>
+              <option value="amount-asc">Amount: Low to High</option>
+              <option value="name-asc">Name: A-Z</option>
+            </select>
+          </div>
+        </div>
+        <div class="glass-card table-card">
+          <div id="income-table" class="data-table"></div>
+          <div id="income-empty" class="empty-state hidden">
+            <lottie-player data-anim="empty" background="transparent" speed="1" style="width:140px;height:140px" loop autoplay></lottie-player>
+            <p>No income records yet. Add your first one!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPENSES -->
+      <section class="page" id="page-expenses">
+        <div class="toolbar glass-card">
+          <button class="btn btn-primary" id="add-expense-btn"><i class="fa-solid fa-plus"></i> Add Expense</button>
+          <div class="toolbar-filters">
+            <div class="search-input">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="expense-search" placeholder="Search expenses…" />
+            </div>
+            <select id="expense-category-filter">
+              <option value="">All Categories</option>
+            </select>
+            <select id="expense-sort">
+              <option value="date-desc">Newest First</option>
+              <option value="date-asc">Oldest First</option>
+              <option value="amount-desc">Amount: High to Low</option>
+              <option value="amount-asc">Amount: Low to High</option>
+              <option value="name-asc">Name: A-Z</option>
+            </select>
+          </div>
+        </div>
+        <div class="glass-card table-card">
+          <div id="expense-table" class="data-table"></div>
+          <div id="expense-empty" class="empty-state hidden">
+            <lottie-player data-anim="empty" background="transparent" speed="1" style="width:140px;height:140px" loop autoplay></lottie-player>
+            <p>No expenses recorded yet. Track your first one!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BILLS -->
+      <section class="page" id="page-bills">
+        <div class="toolbar glass-card">
+          <button class="btn btn-primary" id="add-bill-btn"><i class="fa-solid fa-plus"></i> Add Bill</button>
+          <div class="toolbar-filters">
+            <div class="search-input">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="bill-search" placeholder="Search bills…" />
+            </div>
+            <select id="bill-status-filter">
+              <option value="">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="paid">Paid</option>
+              <option value="overdue">Overdue</option>
+            </select>
+            <select id="bill-sort">
+              <option value="due-asc">Due Date: Soonest</option>
+              <option value="due-desc">Due Date: Latest</option>
+              <option value="amount-desc">Amount: High to Low</option>
+              <option value="amount-asc">Amount: Low to High</option>
+              <option value="name-asc">Name: A-Z</option>
+            </select>
+          </div>
+        </div>
+        <div class="bills-grid" id="bills-grid"></div>
+        <div id="bills-empty" class="empty-state glass-card hidden">
+          <lottie-player data-anim="empty" background="transparent" speed="1" style="width:140px;height:140px" loop autoplay></lottie-player>
+          <p>No bills planned yet. Add one to start tracking due dates!</p>
+        </div>
+      </section>
+
+      <!-- ANALYTICS -->
+      <section class="page" id="page-analytics">
+        <div class="dash-grid">
+          <div class="glass-card chart-card">
+            <h3>Balance Trend (6 Months)</h3>
+            <div class="chart-wrap"><canvas id="chart-trend"></canvas></div>
+          </div>
+          <div class="glass-card chart-card">
+            <h3>Bills: Paid vs Pending</h3>
+            <div class="chart-wrap"><canvas id="chart-bills-status"></canvas></div>
+          </div>
+        </div>
+        <div class="dash-grid">
+          <div class="glass-card chart-card">
+            <h3>Income by Category</h3>
+            <div class="chart-wrap"><canvas id="chart-income-cat"></canvas></div>
+          </div>
+          <div class="glass-card chart-card">
+            <h3>Expenses by Category</h3>
+            <div class="chart-wrap"><canvas id="chart-expense-cat"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <div class="glass-card settings-card">
+          <h3><i class="fa-solid fa-palette"></i> Appearance</h3>
+          <div class="settings-row">
+            <label>Theme</label>
+            <button class="btn btn-secondary" id="settings-theme-toggle">Toggle Dark / Light</button>
+          </div>
+        </div>
+
+        <div class="glass-card settings-card">
+          <h3><i class="fa-solid fa-coins"></i> Preferences</h3>
+          <div class="settings-row">
+            <label for="settings-currency">Currency</label>
+            <select id="settings-currency">
+              <option value="USD">USD — US Dollar ($)</option>
+              <option value="EUR">EUR — Euro (€)</option>
+              <option value="GBP">GBP — British Pound (£)</option>
+              <option value="INR">INR — Indian Rupee (₹)</option>
+              <option value="JPY">JPY — Japanese Yen (¥)</option>
+            </select>
+          </div>
+          <div class="settings-row">
+            <label for="settings-reminder-days">Bill reminder lead time (days)</label>
+            <input type="number" id="settings-reminder-days" min="0" max="30" value="3" />
+          </div>
+        </div>
+
+        <div class="glass-card settings-card">
+          <h3><i class="fa-solid fa-bell"></i> Notifications</h3>
+          <div class="settings-row">
+            <label>Browser Notifications</label>
+            <button class="btn btn-secondary" id="enable-notifications-btn"><i class="fa-solid fa-bell"></i> Enable Notifications</button>
+          </div>
+          <p class="settings-hint" id="notif-permission-status">Status: not requested</p>
+        </div>
+
+        <div class="glass-card settings-card">
+          <h3><i class="fa-solid fa-file-export"></i> Data Management</h3>
+          <div class="settings-row">
+            <label>Export all data as JSON</label>
+            <button class="btn btn-secondary" id="export-json-btn"><i class="fa-solid fa-download"></i> Export JSON</button>
+          </div>
+          <div class="settings-row">
+            <label>Import data from JSON</label>
+            <button class="btn btn-secondary" id="import-json-btn"><i class="fa-solid fa-upload"></i> Import JSON</button>
+            <input type="file" id="import-json-input" accept="application/json" hidden />
+          </div>
+          <div class="settings-row">
+            <label>Clear all data</label>
+            <button class="btn btn-danger" id="clear-data-btn"><i class="fa-solid fa-triangle-exclamation"></i> Clear All Data</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ================= MODALS ================= -->
+
+<!-- Transaction Modal (Income / Expense) -->
+<div class="modal-overlay hidden" id="transaction-modal-overlay">
+  <div class="modal glass-card">
+    <div class="modal-head">
+      <h3 id="transaction-modal-title">Add Income</h3>
+      <button class="icon-btn modal-close" data-close="transaction-modal-overlay"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="transaction-form" novalidate>
+      <input type="hidden" id="transaction-id" />
+      <input type="hidden" id="transaction-type" value="income" />
+
+      <div class="form-row">
+        <label for="transaction-name">Name / Source <span class="req">*</span></label>
+        <input type="text" id="transaction-name" maxlength="60" placeholder="e.g. Monthly Salary" />
+        <span class="field-error" id="err-transaction-name"></span>
+      </div>
+
+      <div class="form-row-split">
+        <div class="form-row">
+          <label for="transaction-amount">Amount <span class="req">*</span></label>
+          <input type="number" id="transaction-amount" min="0.01" step="0.01" placeholder="0.00" />
+          <span class="field-error" id="err-transaction-amount"></span>
+        </div>
+        <div class="form-row">
+          <label for="transaction-date">Date <span class="req">*</span></label>
+          <input type="date" id="transaction-date" />
+          <span class="field-error" id="err-transaction-date"></span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="transaction-category">Category <span class="req">*</span></label>
+        <select id="transaction-category"></select>
+        <span class="field-error" id="err-transaction-category"></span>
+      </div>
+
+      <div class="form-row">
+        <label for="transaction-note">Notes</label>
+        <textarea id="transaction-note" maxlength="200" rows="2" placeholder="Optional notes…"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" data-close="transaction-modal-overlay">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="transaction-submit-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Bill Modal -->
+<div class="modal-overlay hidden" id="bill-modal-overlay">
+  <div class="modal glass-card">
+    <div class="modal-head">
+      <h3 id="bill-modal-title">Add Bill</h3>
+      <button class="icon-btn modal-close" data-close="bill-modal-overlay"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="bill-form" novalidate>
+      <input type="hidden" id="bill-id" />
+
+      <div class="form-row">
+        <label for="bill-name">Bill Name <span class="req">*</span></label>
+        <input type="text" id="bill-name" maxlength="60" placeholder="e.g. Electricity Bill" />
+        <span class="field-error" id="err-bill-name"></span>
+      </div>
+
+      <div class="form-row-split">
+        <div class="form-row">
+          <label for="bill-amount">Amount <span class="req">*</span></label>
+          <input type="number" id="bill-amount" min="0.01" step="0.01" placeholder="0.00" />
+          <span class="field-error" id="err-bill-amount"></span>
+        </div>
+        <div class="form-row">
+          <label for="bill-due-date">Due Date <span class="req">*</span></label>
+          <input type="date" id="bill-due-date" />
+          <span class="field-error" id="err-bill-due-date"></span>
+        </div>
+      </div>
+
+      <div class="form-row-split">
+        <div class="form-row">
+          <label for="bill-category">Category <span class="req">*</span></label>
+          <select id="bill-category"></select>
+          <span class="field-error" id="err-bill-category"></span>
+        </div>
+        <div class="form-row">
+          <label for="bill-recurring">Recurrence</label>
+          <select id="bill-recurring">
+            <option value="none">One-time</option>
+            <option value="monthly">Monthly</option>
+            <option value="weekly">Weekly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="bill-note">Notes</label>
+        <textarea id="bill-note" maxlength="200" rows="2" placeholder="Optional notes…"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" data-close="bill-modal-overlay">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="bill-submit-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal-overlay hidden" id="confirm-modal-overlay">
+  <div class="modal glass-card confirm-modal">
+    <div class="modal-head">
+      <h3 id="confirm-modal-title">Are you sure?</h3>
+      <button class="icon-btn modal-close" data-close="confirm-modal-overlay"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p id="confirm-modal-message">This action cannot be undone.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary" data-close="confirm-modal-overlay">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirm-modal-confirm-btn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toast-container"></div>
+
+<script src="js/lottie-data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
