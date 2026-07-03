@@ -4,69 +4,287 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>portfolio</title>
-   <h1>Portfolio</h1>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-    Chandralekha BS
-    <nav>
-       <a href="#Home">Home</a>
-       <a href="#About">About</a>
-       <a href="#project">project</a>
-       <a href="#skill">skill</a>
-       <a href="#contact">contact</a>
-    </nav>
-</header>
+        <input type="checkbox" id="navToggle" class="nav-toggle-checkbox">
 
-<section>
-    <h2>Project</h2>
-    
-    <article>
-        Coding Issues Tracking System
-    <ul><li>Developed web-based ticket system for tracking/resolving coding
-issues with user roles & status updates</li>
-    <li>Implemented issue categorization, workflow management using PHP
-backend + MySQL database</li>
-    <li>Perfect match for Technical Support—direct experience with issue
-tracking & resolution workflows</li>
+        <a href="#Home" class="brand" aria-label="Chandralekha B S — home">
+            <span class="brand-mark">CL</span>
+        </a>
+
+        <label for="navToggle" class="nav-toggle" aria-label="Toggle menu">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+        </label>
+
+        <nav id="siteNav">
+            <ul>
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#about-content">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#project">Project</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
+    </header>
+
+    <section id="Home" class="profile-grid">
+        <article class="profile-grid-article profile-text">
+    <svg class="name-svg" viewBox="0 0 900 220">
+        <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#8a6d1f"/>
+                <stop offset="50%" stop-color="#e2c465"/>
+                <stop offset="100%" stop-color="#c9a227"/>
+            </linearGradient>
+        </defs>
+
+        <text
+            x="20"
+            y="110"
+            class="name">
+            <tspan x="20" dy="0">Chandralekha B S</tspan>
+            <tspan x="20" dy="55" class="subtitle">Full Stack Developer</tspan>
+        </text>
+    </svg>
+</article>
+
+        <article class="profile-grid-article profile-visual">
+            <figure class="avatar-frame">
+                <img src="lekha.jpg" alt="profile picture" class="avatar">
+            </figure>
+        </article>
+    </section>
+
+    <section id="about-content">
+        <h1>About</h1>
+        <p>Experienced in building scalable organizations through technical leadership and
+        process optimization. Led cross-functional teams as Scrum Master, delivering
+        production systems with 100% uptime. Skilled in API debugging, database
+        optimization, and customer issue resolution—ready to develop robust
+        organizational systems that scale efficiently.
+        </p>
+    </section>
+
+    <section id="skills">
+        <h1>Skills</h1>
+        <ul class="skills-list">
+            <li>PHP</li>
+            <li>MySQL</li>
+            <li>React Native</li>
+            <li>JavaScript</li>
+            <li>SQL</li>
+            <li>Issue tracking/resolution</li>
+            
+            <li>Scrum Master</li>
+           
+        </ul>
+    </section>
+
+    <section id="project" class="project-grid">
+        <h1>Project</h1>
+
+        <article class="project-grid-article">
+            <h2>Coding Issues Tracking System</h2>
+            <ul>
+                <li>Developed web-based ticket system for tracking/resolving coding
+                issues with user roles & status updates</li>
+                <li>Implemented issue categorization, workflow management using PHP
+                backend + MySQL database</li>
+                <li>Perfect match for Technical Support—direct experience with issue
+                tracking & resolution workflows</li>
+            </ul>
+        </article>
+
+        <article class="project-grid-article">
+            <h2>Digital Parking System</h2>
+            <ul>
+                <li>Developed mobile parking management with React Native UI, Core
+                PHP REST APIs, MySQL stored procedures</li>
+                <li>Enabled real-time slot tracking & secure bookings with concurrent
+                access handling</li>
+                <li>Demonstrated Technical Support skills: API debugging, database
+                optimization, multi-platform issue resolution</li>
+            </ul>
+        </article>
+
+         <article class="project-grid-article">
+            <h2>pharma</h2>
+            <ul>
+                <li>Developed mobile medicine management with React Native UI, Core
+                PHP REST APIs, MySQL stored procedures</li>
+                <li>Improves pharmaceutical sales operations through real-time tracking, payment monitoring, WhatsApp notifications, and centralized reporting, resulting in better productivity and customer service.</li>
+                <li>Overall, the system improves efficiency, transparency, and productivity in pharmaceutical sales and field operations.</li>
+            </ul>
+        </article>
+    </section>
+<section id="education">
+
+    <h1>Education</h1>
+
+    <ol class="education-grid">
+
+        <li class="education-item">
+
+            <span class="education-marker" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3 1 8.5 12 14l9-4.7V14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 11v5c0 1.7 3.1 3.5 7 3.5s7-1.8 7-3.5v-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+
+            <section class="education-card">
+
+                <header class="education-card-head">
+                    <span class="education-year">2023 – 2025</span>
+                    <span class="cgpa-badge">CGPA 8</span>
+                </header>
+
+                <h2>Master of Computer Applications</h2>
+
+                <p class="education-place">Nehru Institute of Information Technology And Management,Coimbatore</p>
+
+                <p class="education-skills">
+                Anna University ,chennai
+                </p>
+
+            </section>
+
+        </li>
+
+        <li class="education-item">
+
+            <span class="education-marker" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3 1 8.5 12 14l9-4.7V14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 11v5c0 1.7 3.1 3.5 7 3.5s7-1.8 7-3.5v-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+
+            <section class="education-card">
+
+                <header class="education-card-head">
+                    <span class="education-year">2020 – 2023</span>
+                    <span class="cgpa-badge">CGPA 8.3</span>
+                </header>
+
+                <h2>Bachelor of Science in Computer Science</h2>
+
+                <p class="education-place">A.K.D.Dharma Raja Women's College,Rajapalayam</p>
+
+                <p class="education-skills">
+                    Madurai Kamarajar University,Madurai
+                </p>
 
 
-<aside> </aside>
-    </article>
+            </section>
 
-    <article>
-        Digital Parking System
-    <ul><li>Developed mobile parking management with React Native UI, Core
-PHP REST APIs, MySQL stored procedures</li>
-    <li>Enabled real-time slot tracking & secure bookings with concurrent
-access handling
-</li>
-    <li>Demonstrated Technical Support skills: API debugging, database
-optimization, multi-platform issue resolution</li>
+        </li>
 
+                <li class="education-item">
 
+            <span class="education-marker" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3 1 8.5 12 14l9-4.7V14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 11v5c0 1.7 3.1 3.5 7 3.5s7-1.8 7-3.5v-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
 
-    </article>
-   
+            <section class="education-card">
+
+                <header class="education-card-head">
+                    <span class="education-year">2019 – 2020</span>
+                    <span class="cgpa-badge">CGPA 7</span>
+                </header>
+
+                <h2>Higher Secondary Certificate</h2>
+
+                <p class="education-place">Nadar Matriculation Higher Secondary School, Rajapalayam</p>
+
+                <p class="education-skills">
+                    State borad of Tamil Nadu
+                </p>
+
+            </section>
+
+        </li>
+
+         <li class="education-item">
+
+            <span class="education-marker" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3 1 8.5 12 14l9-4.7V14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 11v5c0 1.7 3.1 3.5 7 3.5s7-1.8 7-3.5v-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+
+            <section class="education-card">
+
+                <header class="education-card-head">
+                    <span class="education-year">2017 – 2018</span>
+                    <span class="cgpa-badge">CGPA 8.4</span>
+                </header>
+
+                <h2>Secondary School Leaving Certificate</h2>
+
+                <p class="education-place">Nadar Matriculation Higher Secondary School, Rajapalayam</p>
+
+                <p class="education-skills">
+                    State borad of Tamil Nadu
+                </p>
+
+            </section>
+
+        </li>
+
+    </ol>
+
 </section>
-     <aside><h1>Education</h1></aside>
-       
 
-
-<footer> 
-    <h2>Contact</h2>
-    <form action="submit">
-        <label for="Name">Name:</label>
+    <footer id="contact">
+        <h1>Contact</h1>
+        <form action="submit">
+            <label for="name">Name:</label>
             <input id="name" type="text" placeholder="name">
-        <label for="Phone no">phone no:</label>
-            <input id="number" type="number" placeholder="Phonenumber">
-        <label for="email">Email:</label>
+
+            <label for="number">Phone no:</label>
+            <input id="number" type="number" placeholder="Phone number">
+
+            <label for="email">Email:</label>
             <input id="email" type="email" placeholder="email">
-        <label for="message">Message:</label>
-                <textarea name="message" id="Message" rows="3"></textarea>
-        <button onclick="Submit">Submit</button>
-    </form>
-   
-</footer>
+
+            <label for="Message">Message:</label>
+            <textarea name="message" id="Message" rows="3"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/chandra-lekha-bs" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+                </svg>
+            </a>
+            <a href="tel:+91000000000000" aria-label="Phone">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.25 1.02l-2.2 2.2z"/>
+                </svg>
+            </a>
+            <a href="mailto:chandralekharoja@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2.2.5 7.8 6.24L19.8 6H4.2zM20 8.16l-7.4 5.92a1 1 0 0 1-1.2 0L4 8.16V18h16V8.16z"/>
+                </svg>
+            </a>
+        </div>
+
+        <p class="copyright">&copy; 2026 Chandralekha B S. All rights reserved.</p>
+    </footer>
 </body>
 </html>
