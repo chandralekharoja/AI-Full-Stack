@@ -17,7 +17,7 @@ function temperature(celsius)
     }
 
     else if (celsius < -273.15 || celsius > 1000){
-        console.log("Values cannot be zero");
+        
         return "Values cannot be zero";
     }
 
