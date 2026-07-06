@@ -24,4 +24,16 @@ Project titles ("Coding Issues Tracking System") are bare text — wrap in <h3> 
 Add <meta name="description" content="..."> for SEO.
 ## advance 
 
+## Day 4 
 
+### prompt
+
+hey explain my code (My code )
+
+### AI generates
+
+"Enter your phone number" is missing a trailing "? " / ": " like the other prompts, so the user's typed input will appear right after "number" with no space.
+Continue is a capitalized variable name that shadows nothing in JS, but it reads oddly since it looks like a keyword — a more conventional name would be keepGoing or isRunning.
+If the user enters an invalid name/phone, they're re-asked for both name and phone, even if only one was wrong.
+
+## Day 4 (Home work)

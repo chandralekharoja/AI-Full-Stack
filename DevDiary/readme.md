@@ -15,3 +15,15 @@
     Task:Addition and Subraction for Binary,Decimal,Hexadecimal
     create a skeleton for portfolio and make readme and ai-log
 
+## Day 3 
+
+    Today journey is the CSS - learn abot flex box, box model ,grid , responsive layout
+    Task : style our portfolio using grid and make a responsive for all devices .
+
+
+## Day 4 
+
+    Today journey is the javascript - array ,function ,variable , Data types ,Conditions , loops, objects
+    Task :Get details from user and store in array  and review (Store unlimited data )
+    Home work :Temperature convertor,simple calculator, arroy sort for even numbers only 
+    
