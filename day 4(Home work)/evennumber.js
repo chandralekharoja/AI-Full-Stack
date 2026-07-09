@@ -36,7 +36,7 @@ while (cancel) {
     break;
   }
   else {
-    console.log("Enter the valid name and number");
+    console.log("Enter the valid  number");
   }
 
 

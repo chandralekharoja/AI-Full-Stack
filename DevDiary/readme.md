@@ -27,3 +27,15 @@
     Task :Get details from user and store in array  and review (Store unlimited data )
     Home work :Temperature convertor,simple calculator, arroy sort for even numbers only 
     
+## Day 5
+    Today journey is about the Dyanamic DOM, Form Events,Event Delegation,Git Branches,GitHub Pages.
+    Task :How to create ,switch ,detelet ,Merge the branches and how to publich our project on git,make portfolio as dynamic data
+    
+## Day 6
+
+    Today journey is about the deconstructing ,spread and threads ,ES model ,Promises,async/await, fetch API
+
+## day 7
+
+    Today i learn about the Rest,status code ,API code,Nested JSON,Error handling 
+    Task :Find the and fetch the weather using Two API

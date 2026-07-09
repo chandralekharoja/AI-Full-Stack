@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "weather-app",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "5173", "../Day 7(2 API)"],
+      "port": 5173
+    }
+  ]
+}

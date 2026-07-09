@@ -37,3 +37,6 @@ Continue is a capitalized variable name that shadows nothing in JS, but it reads
 If the user enters an invalid name/phone, they're re-asked for both name and phone, even if only one was wrong.
 
 ## Day 4 (Home work)
+
+Temperature conversion
+
