@@ -39,3 +39,14 @@
 
     Today i learn about the Rest,status code ,API code,Nested JSON,Error handling 
     Task :Find the and fetch the weather using Two API
+
+## Day 8 (09.07.2026)
+     
+    Today i learn about the components,JSX,props,vite 
+    Task create a weather loading,searching
+
+
+## Day 9 (10.07.2026)
+
+    Today i learn usestate, controlled inputs,use effects,lifting stats up
+    Task create weather app using usestate ,useeffect and TO Do List also

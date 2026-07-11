@@ -1,0 +1,10 @@
+.loading {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  color: #2563eb;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}

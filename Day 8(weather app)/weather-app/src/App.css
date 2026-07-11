@@ -1,0 +1,125 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #67c8ff, #b7ebff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* App */
+
+.app {
+  width: 100%;
+  padding: 40px;
+}
+
+.app h1 {
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 60px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+}
+
+/* Cards */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Weather Card */
+
+.card {
+  position: relative;
+
+  width: 220px;
+  height: 220px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  padding: 25px;
+
+  background: rgba(255, 255, 255, .55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, .5);
+  border-radius: 24px;
+
+  text-align: center;
+  overflow: hidden;
+
+  box-shadow:
+    0 15px 35px rgba(0, 60, 120, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .8);
+
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+/* accent bar across the top */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #0078ff, #67c8ff, #b7ebff);
+}
+
+/* soft glow that appears on hover */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  box-shadow: 0 0 0 0 rgba(0, 120, 255, 0);
+  transition: box-shadow .35s ease;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 25px 45px rgba(0, 60, 120, .25),
+    inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+.card:hover::after {
+  box-shadow: 0 0 25px 4px rgba(0, 120, 255, .35);
+}
+
+.card h2 {
+  color: #144272;
+  font-size: 1.4rem;
+  letter-spacing: .3px;
+}
+
+.card p {
+  color: #0066ff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card p:first-of-type {
+  font-size: 2.6rem;
+  color: #0078ff;
+  font-weight: bold;
+  line-height: 1;
+  margin: 6px 0;
+}

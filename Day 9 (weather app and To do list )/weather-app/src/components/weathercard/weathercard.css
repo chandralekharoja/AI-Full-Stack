@@ -1,0 +1,30 @@
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+  margin: 0;
+  color: #1e3a8a;
+}
+
+.temp {
+  font-size: 48px;
+  font-weight: bold;
+  color: #2563eb;
+  margin: 15px 0;
+}
+
+.details {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.details p {
+  margin: 10px 0;
+  color: #444;
+  font-size: 16px;
+}

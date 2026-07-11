@@ -26,3 +26,35 @@ only rejects an empty string after trimming. It doesn't cap input length or reje
 
 
 blindly takes location[0], the first Nominatim match. Common city names ("Paris", "Springfield", "Georgia") will silently resolve to whatever the API ranks first, with no disambiguation shown to the user.
+
+## Day 8 (09.07.2026)
+
+Duplicate temp prop is silently dropped. In every card from Madurai onward you have temp={29.8} immediately followed by temp={28.4}. JSX doesn't error on duplicate attributes — the last one wins, so 29.8 is dead code and every affected card actually renders 28.4. Likely not what was intended (probably meant feelsLike or similar).
+
+No fallback for missing/undefined props. WeatherCard never uses defaultProps or default parameter values. If any caller omits a prop (e.g. temp), it renders as a blank string (°C with nothing before it) instead of a placeholder like "--" or "N/A".
+
+time is a raw ISO string, not parsed/formatted. time="2026-07-09T06:30" is printed verbatim (<p>{props.time}</p>). There's no Date parsing, timezone conversion, or locale formatting — if the upstream data format ever changes (e.g. includes seconds, or uses epoch millis), it silently prints garbage instead of a readable time.
+
+## Day 9 (10.07.2026)
+
+### For the weather APP
+
+        Case-sensitive import mismatches will break the production build. weathercard.jsx:1 imports "./WeatherCard.css" but the file on disk is weathercard.css; erro.jsx:1 imports "./Error.css" but the file is error.css. Windows/macOS are case-insensitive so this works locally, but Vite builds on case-sensitive Linux (most CI/Vercel/Netlify) will fail to resolve these imports.
+
+        Geocoding blindly trusts the first result. location[0] (App.jsx:33) is used with no disambiguation — searching "Paris" or "Springfield" silently returns whichever city Nominatim ranks first, which may not be what the user meant. Nominatim's usage policy also requires an identifying User-Agent/referer (api.jsx:2-4); without one, requests can get rate-limited or blocked (HTTP 403) in production.
+
+        
+
+
+
+
+
+### for TO DO LIST 
+         Duplicate task IDs from Date.now() — App.jsx:17
+id: Date.now() only has millisecond resolution. Two tasks added fast enough (e.g. holding Enter, or a double-click on "Add") can get the same id. Since toggleTask/deleteTask match on task.id === id (App.jsx:25,31) and TaskList keys on task.id, colliding tasks will toggle/delete together as a pair, and React will warn about duplicate keys.
+
+        Long, unbreakable text overflows the fixed-width container — App.css:50-58, App.css:7-13
+.todo-container is a fixed 500px, and .todo-task has no word-break/overflow-wrap. A task with one long unbroken token (a long URL, a hash, "aaaaaaaaaaaaaaaaaaaaaaaaaaaa...") will overflow the box horizontally instead of wrapping, breaking the layout.
+
+        No persistence — App.jsx:9
+useState([]) is the only source of truth. Refreshing the page, closing the tab, or navigating away silently wipes the entire list — there's no localStorage/backend save.
