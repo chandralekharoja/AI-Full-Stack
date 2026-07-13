@@ -58,3 +58,10 @@ id: Date.now() only has millisecond resolution. Two tasks added fast enough (e.g
 
         No persistence — App.jsx:9
 useState([]) is the only source of truth. Refreshing the page, closing the tab, or navigating away silently wipes the entire list — there's no localStorage/backend save.
+
+
+## Day 10 (12.07.2026)
+
+Crash on empty category results — Categories.jsx: filter.php?c=X returns {meals: null} for categories with no matches. Unlike Home.jsx (which checks if (response.data.meals)), Categories.jsx sets recipes directly with no null check → recipes.map(...) throws.
+App-crashing corrupted localStorage — FavoriteProvider.jsx: JSON.parse(localStorage.getItem("favorites")) runs with no try/catch inside a useState initializer. If that value is ever malformed, the entire app fails to render on load, and there's no error boundary anywhere to catch it.
+Race conditions on fast typing/clicking — None of the fetches (Home.jsx, Categories.jsx, RecipeDetails.jsx) use AbortController or a "stale response" guard. Rapid searches/category switches can let an older, slower response overwrite newer state.

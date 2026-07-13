@@ -50,3 +50,10 @@
 
     Today i learn usestate, controlled inputs,use effects,lifting stats up
     Task create weather app using usestate ,useeffect and TO Do List also
+
+
+## Day 10 (11.07.2026)
+    Today i lear about the FORMS, LISTS & YOUR REACT
+    task :Mini projects
+
+    

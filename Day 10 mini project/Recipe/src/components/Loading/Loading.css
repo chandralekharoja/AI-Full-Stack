@@ -1,0 +1,41 @@
+.loading{
+
+height:60vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+}
+
+.spinner{
+
+width:70px;
+
+height:70px;
+
+border:6px solid #ddd;
+
+border-top:6px solid #ff6b35;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+margin-bottom:20px;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
