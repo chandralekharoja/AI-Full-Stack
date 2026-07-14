@@ -65,3 +65,24 @@ useState([]) is the only source of truth. Refreshing the page, closing the tab, 
 Crash on empty category results — Categories.jsx: filter.php?c=X returns {meals: null} for categories with no matches. Unlike Home.jsx (which checks if (response.data.meals)), Categories.jsx sets recipes directly with no null check → recipes.map(...) throws.
 App-crashing corrupted localStorage — FavoriteProvider.jsx: JSON.parse(localStorage.getItem("favorites")) runs with no try/catch inside a useState initializer. If that value is ever malformed, the entire app fails to render on load, and there's no error boundary anywhere to catch it.
 Race conditions on fast typing/clicking — None of the fetches (Home.jsx, Categories.jsx, RecipeDetails.jsx) use AbortController or a "stale response" guard. Rapid searches/category switches can let an older, slower response overwrite newer state.
+
+
+## Day 11(13.07.2026)
+
+### formatter
+
+No error handling: if input.txt doesn't exist or isn't readable, readFileSync throws and crashes with a raw stack trace.
+Silent overwrite: output.txt is truncated and replaced with no check for existing content.
+Relative paths: "input.txt"/"output.txt" resolve against process.cwd(), not the script's directory — running from a different folder silently reads/writes the wrong files.
+
+### CLI
+
+No feedback on empty note list
+
+If notes.txt exists but is empty, list prints "Saved Notes:" followed by nothing — not wrong, just a slightly confusing UX (looks like it might be an error).
+No way to remove/edit
+
+Not a bug, but worth flagging: there's no remove/clear command, so notes.txt only grows, and a bad note (like the empty ones above) can only be fixed by hand-editing the file.
+Command matching
+
+Comparison is case-sensitive and exact (=== "add"/=== "list"); Add, ADD, or trailing whitespace in the command falls through to the usage message with no indication of what went wrong.

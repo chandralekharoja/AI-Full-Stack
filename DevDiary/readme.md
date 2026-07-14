@@ -56,4 +56,7 @@
     Today i lear about the FORMS, LISTS & YOUR REACT
     task :Mini projects
 
-    
+## Day 11 (13.07.2026)
+    Today i learn about the enivironment variable, node js, node runtime,npm packages,package.json,modules and file system 
+    disk management
+    Task :File reformatter,CLI  
