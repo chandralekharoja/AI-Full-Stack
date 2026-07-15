@@ -60,3 +60,9 @@
     Today i learn about the enivironment variable, node js, node runtime,npm packages,package.json,modules and file system 
     disk management
     Task :File reformatter,CLI  
+
+## Day 12(14.07.2026)
+
+    Today i learn about the EXPRESS.JS & BUILDING A
+REST API
+    Task:PUT ,POST ,DELETE,GET
