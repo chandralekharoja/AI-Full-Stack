@@ -1,4 +1,4 @@
-## day 0
+## day 0 (30.06.2026)
 prompt
 Create a Personal Finance Budgeting Tool using only HTML, CSS, and JavaScript. Design a clean, modern, responsive, and user-friendly interface with smooth animations. Allow users to add, edit, and delete income and expense transactions with amount, category, description, and date. Display total income, total expenses, available balance, and a transaction history with search, sorting, and category filters. Store all data using Local Storage so it persists after page refresh. Include budget planning where users can schedule future bills (electricity, rent, internet, EMI, etc.) with amount, due date, and time. Planned bills should not reduce the available balance until they are marked as Paid after the due date. Add browser notifications and reminder alerts before and on the due date/time for upcoming bills. Provide a separate section for Pending Bills and Paid Bills, along with basic form validation, export/import data (JSON), dark/light mode, monthly spending summary, and a clean dashboard with cards and charts.
 
@@ -9,7 +9,7 @@ Build BudgetSphere using HTML, CSS, and JavaScript only. Create a fully responsi
 
 
 
-## Day 2
+## Day 2(02.07.2026)
 
 prompt
 this is my portfolio html content only don't make changes in my code.check my code is this correct or need any imporvements or any advance way
@@ -24,7 +24,7 @@ Project titles ("Coding Issues Tracking System") are bare text — wrap in <h3> 
 Add <meta name="description" content="..."> for SEO.
 ## advance 
 
-## Day 4 
+## Day 4 (04.07.2026)
 
 ### prompt
 
