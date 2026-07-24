@@ -1,0 +1,148 @@
+.details {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.details img {
+  width: 400px;
+  height: 400px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.details-content {
+  flex: 1;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.title-row h1 {
+  font-size: 2rem;
+  color: #ff6b35;
+}
+
+.heart-btn {
+  width: 55px;
+  height: 55px;
+  border: none;
+  background: #fff;
+  border-radius: 50%;
+  color: red;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+}
+
+.heart-btn:hover {
+  transform: scale(1.1);
+}
+
+.details-content h3 {
+  margin: 10px 0;
+  color: #444;
+}
+
+.details-content h2 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #ff6b35;
+  border-bottom: 2px solid #ff6b35;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.details-content ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.details-content li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.details-content p {
+  margin-top: 15px;
+  line-height: 1.8;
+  color: #555;
+  text-align: justify;
+}
+
+.youtube-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 25px;
+  background: #ff0000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.youtube-btn:hover {
+  background: #d60000;
+  transform: translateY(-2px);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .details {
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .details img {
+    width: 100%;
+    height: auto;
+  }
+
+  .title-row h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .details {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .title-row {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .title-row h1 {
+    font-size: 1.5rem;
+  }
+
+  .heart-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .youtube-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
